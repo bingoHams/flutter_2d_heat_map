@@ -7,6 +7,7 @@ export 'src/amap_2d_heat_view.dart';
 export 'src/amap_2d_view.dart';
 export 'src/interface/amap_2d_controller.dart';
 export 'src/poi_search_model.dart';
+export 'src/web/amapjs.dart';
 
 class Flutter2dHeatMap {
   Future<String?> getPlatformVersion() {

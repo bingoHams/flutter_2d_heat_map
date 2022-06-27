@@ -61,6 +61,15 @@ class _MyAppState extends State<MyApp> {
                   onAMap2DViewCreated: (controller) {
                     _aMap2DController = controller;
                   },
+                  point: [
+                    Points(lng: 116.191031, lat: 39.988585, count: 10),
+                    Points(lng: 116.389275, lat: 39.925818, count: 11),
+                    Points(lng: 116.287444, lat: 39.810742, count: 12),
+                    Points(lng: 116.481707, lat: 39.940089, count: 13),
+                    Points(lng: 116.410588, lat: 39.880172, count: 14),
+                    Points(lng: 116.394816, lat: 39.91181, count: 15),
+                    Points(lng: 116.416002, lat: 39.952917, count: 16)
+                  ],
                 ),
               ),
             ],
