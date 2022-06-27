@@ -214,7 +214,7 @@ class HeatmapOptions {
   external factory HeatmapOptions({
     num radius,
     List<num> opacity,
-    Map<num, String> gradient,
+    dynamic gradient,
   });
 }
 

@@ -48,20 +48,8 @@ class AMap2DHeatViewState extends State<AMap2DHeatView> {
         _aMap.addControl(Scale());
         // _aMap.addControl(ToolBar());
         final HeatMap heatmap = HeatMap(_aMap, HeatmapOptions(radius: 10));
-        // print('${HeatMap(_aMap, HeatmapOptions(radius: 10))}');
         heatmap.addDataPoint(116.389275, 39.925818, 11);
-        heatmap.setOptions(HeatmapOptions(radius: 25));
-        // heatmap.addDataPoint(116.191031, 39.988585, 10);
-        // heatmap.setDataSet({"data": [
-        //   {"lng": 116.287444, "lat": 39.810742, "count": 12},
-        //   {"lng": 116.481707, "lat": 39.940089, "count": 13},
-        //   {"lng": 116.410588, "lat": 39.880172, "count": 14},
-        //   {"lng": 116.394816, "lat": 39.91181, "count": 15},
-        //   {"lng": 116.416002, "lat": 39.952917, "count": 16}
-        // ], "max": 10});
-        // heatmap.hide();
-        //   heatmap.setDataSet('{"data":[{"lng":116.191031,"lat":39.988585,"count":10},{"lng":116.389275,"lat":39.925818,"count":11},{"lng":116.287444,"lat":39.810742,"count":12},{"lng":116.481707,"lat":39.940089,"count":13},{"lng":116.410588,"lat":39.880172,"count":14},{"lng":116.394816,"lat":39.91181,"count":15},{"lng":116.416002,"lat":39.952917,"count":16}],"max":100}');
-        // _aMap.addControl(Scale());
+        heatmap.setOptions(HeatmapOptions(radius: 25,opacity: [0,0.2], ));
         heatmap.setDataSet(DataSet(data: points.toList(), max: 100));
       }));
     }, onError: (dynamic e) {
