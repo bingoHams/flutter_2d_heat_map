@@ -40,24 +40,7 @@ class AMap2DHeatViewState extends State<AMap2DHeatView> {
       /// 无法使用id https://github.com/flutter/flutter/issues/40080
       _aMap = AMap(_element, _mapOptions);
 
-      List<Points> points = [
-        Points(lng: 116.191031, lat: 39.988585, count: 10),
-        Points(lng: 116.389275, lat: 39.925818, count: 11),
-        Points(lng: 116.287444, lat: 39.810742, count: 12),
-        Points(lng: 116.481707, lat: 39.940089, count: 13),
-        Points(lng: 116.410588, lat: 39.880172, count: 14),
-        Points(lng: 116.394816, lat: 39.91181, count: 15),
-        Points(lng: 116.416002, lat: 39.952917, count: 16),
-      ];
-      // var points = [
-      //   {"lng": 116.191031, "lat": 39.988585, "count": 10},
-      //   {"lng": 116.389275, "lat": 39.925818, "count": 11},
-      //   {"lng": 116.287444, "lat": 39.810742, "count": 12},
-      //   {"lng": 116.481707, "lat": 39.940089, "count": 13},
-      //   {"lng": 116.410588, "lat": 39.880172, "count": 14},
-      //   {"lng": 116.394816, "lat": 39.91181, "count": 15},
-      //   {"lng": 116.416002, "lat": 39.952917, "count": 16}
-      // ];
+      List<Points> points = widget.point;
 
       /// 加载插件
       _aMap.plugin(plugins, allowInterop(() {
