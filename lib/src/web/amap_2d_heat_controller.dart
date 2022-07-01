@@ -1,13 +1,13 @@
+import 'package:flutter_2d_heat_map/flutter_2d_heat_map.dart';
 import 'package:flutter_2d_heat_map/src/amap_2d_view.dart';
 import 'package:flutter_2d_heat_map/src/interface/amap_2d_controller.dart';
 import 'package:flutter_2d_heat_map/src/poi_search_model.dart';
 import 'package:js/js.dart';
 
-import '../../flutter_2d_heat_map.dart';
 import 'amapjs.dart';
 
-class AMap2DWebController extends AMap2DController {
-  AMap2DWebController(this._aMap, this._widget) {
+class AMap2DHeatWebController extends AMap2DController {
+  AMap2DHeatWebController(this._aMap, this._widget) {
     _placeSearchOptions = PlaceSearchOptions(
       extensions: 'all',
       type: _kType,
@@ -15,27 +15,27 @@ class AMap2DWebController extends AMap2DController {
       pageSize: 50,
     );
 
-    _aMap.on('click', allowInterop((event) {
-      //_aMap.resize(); /// 2.0无法自适应容器大小，需手动调用触发计算。
-      searchNearBy(LngLat(event.lnglat.getLng(), event.lnglat.getLat()));
-    }));
+    // _aMap.on('click', allowInterop((event) {
+    //   //_aMap.resize(); /// 2.0无法自适应容器大小，需手动调用触发计算。
+    //   searchNearBy(LngLat(event.lnglat.getLng(), event.lnglat.getLat()));
+    // }));
 
     /// 定位插件初始化
-    _geolocation = Geolocation(GeolocationOptions(
-      timeout: 15000,
-      buttonPosition: 'RT',
-      buttonOffset: Pixel(10, 20),
-      zoomToAccuracy: true,
-      enableHighAccuracy: true,
-    ));
-
-    _aMap.addControl(_geolocation);
+    // _geolocation = Geolocation(GeolocationOptions(
+    //   timeout: 15000,
+    //   buttonPosition: 'RT',
+    //   buttonOffset: Pixel(10, 20),
+    //   zoomToAccuracy: true,
+    //   enableHighAccuracy: true,
+    // ));
+    //
+    // _aMap.addControl(_geolocation);
     location();
   }
 
-  final AMap2DView _widget;
+  final AMap2DHeatView _widget;
   final AMap _aMap;
-  late Geolocation _geolocation;
+  // late Geolocation _geolocation;
   MarkerOptions? _markerOptions;
   late PlaceSearchOptions _placeSearchOptions;
   static const String _kType =
@@ -78,18 +78,18 @@ class AMap2DWebController extends AMap2DController {
 
   @override
   Future<void> location() async {
-    _geolocation.getCurrentPosition(allowInterop((status, result) {
-      if (status == 'complete') {
-        _aMap.setZoom(17);
-        _aMap.setCenter(result.position);
-        searchNearBy(result.position);
-      } else {
-        /// 异常查询：https://lbs.amap.com/faq/js-api/map-js-api/position-related/43361
-        /// Get geolocation time out：浏览器定位超时，包括原生的超时，可以适当增加超时属性的设定值以减少这一现象，
-        /// 另外还有个别浏览器（如google Chrome浏览器等）本身的定位接口是黑洞，通过其请求定位完全没有回应，也会超时返回失败。
-        print(result.message);
-      }
-    }));
+    // _geolocation.getCurrentPosition(allowInterop((status, result) {
+    //   if (status == 'complete') {
+    //     _aMap.setZoom(17);
+    //     _aMap.setCenter(result.position);
+    //     searchNearBy(result.position);
+    //   } else {
+    //     /// 异常查询：https://lbs.amap.com/faq/js-api/map-js-api/position-related/43361
+    //     /// Get geolocation time out：浏览器定位超时，包括原生的超时，可以适当增加超时属性的设定值以减少这一现象，
+    //     /// 另外还有个别浏览器（如google Chrome浏览器等）本身的定位接口是黑洞，通过其请求定位完全没有回应，也会超时返回失败。
+    //     print(result.message);
+    //   }
+    // }));
     return Future.value();
   }
 
@@ -143,15 +143,16 @@ class AMap2DWebController extends AMap2DController {
 
   @override
   Future<void> addPoint(MyPoints point) {
-    // final HeatMap heatmap = HeatMap(_aMap, HeatmapOptions(radius: 10));
-    // heatmap.addDataPoint(points, 39.925818, 11);
-    // print("${point.getCount()}");
+    final HeatMap heatmap = HeatMap(_aMap, HeatmapOptions(radius: 10));
+    heatmap.addDataPoint(point.lng, point.lat, point.count);
+    print("${point.toString()}");
     return Future.value();
   }
 
   @override
   Future<void> setHeadPointDataSet(List<Points> points) {
-
+    final HeatMap heatmap = HeatMap(_aMap, HeatmapOptions(radius: 10));
+    heatmap.setDataSet(DataSet(data: points.toList(), max: 100));
     return Future.value();
   }
 }

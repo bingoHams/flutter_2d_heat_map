@@ -8,6 +8,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_2d_heat_map/flutter_2d_heat_map.dart';
 import 'package:js/js.dart';
+import 'amap_2d_controller.dart';
+import 'amap_2d_heat_controller.dart';
 import 'amapjs.dart';
 import 'loaderjs.dart';
 
@@ -16,6 +18,7 @@ class AMap2DHeatViewState extends State<AMap2DHeatView> {
   final List<String> plugins = <String>[
     'AMap.Heatmap',
     'AMap.Scale',
+    // 'AMap.Geolocation',
     // 'AMap.ToolBar'
   ];
 
@@ -40,7 +43,7 @@ class AMap2DHeatViewState extends State<AMap2DHeatView> {
       /// 无法使用id https://github.com/flutter/flutter/issues/40080
       _aMap = AMap(_element, _mapOptions);
 
-      List<Points> points = widget.point;
+      // List<Points> points = widget.point;
 
       /// 加载插件
       _aMap.plugin(plugins, allowInterop(() {
@@ -48,9 +51,15 @@ class AMap2DHeatViewState extends State<AMap2DHeatView> {
         _aMap.addControl(Scale());
         // _aMap.addControl(ToolBar());
         final HeatMap heatmap = HeatMap(_aMap, HeatmapOptions(radius: 10));
-        heatmap.addDataPoint(116.389275, 39.925818, 11);
+        // heatmap.addDataPoint(116.389275, 39.925818, 11);
         heatmap.setOptions(HeatmapOptions(radius: 25,opacity: [0,0.2], ));
-        heatmap.setDataSet(DataSet(data: points.toList(), max: 100));
+        heatmap.setDataSet(DataSet(data: widget.point.toList(), max: 100));
+
+        final AMap2DHeatWebController controller =
+        AMap2DHeatWebController(_aMap, widget);
+        if (widget.onAMap2DViewCreated != null) {
+          widget.onAMap2DViewCreated!(controller);
+        }
       }));
     }, onError: (dynamic e) {
       print('初始化错误：$e');

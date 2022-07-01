@@ -10,7 +10,7 @@ import 'package:flutter_2d_heat_map/src/amap_2d_view.dart';
 
 import 'package:js/js.dart';
 
-
+import 'amap_2d_controller.dart';
 import 'amapjs.dart';
 import 'loaderjs.dart';
 
@@ -48,11 +48,11 @@ class AMap2DViewState extends State<AMap2DView> {
         print("开始加载");
         _aMap.addControl(Scale());
         _aMap.addControl(ToolBar());
-        // final AMap2DWebController controller =
-        //     AMap2DWebController(_aMap, widget);
-        // if (widget.onAMap2DViewCreated != null) {
-        //   widget.onAMap2DViewCreated!(controller);
-        // }
+        final AMap2DWebController controller =
+            AMap2DWebController(_aMap, widget);
+        if (widget.onAMap2DViewCreated != null) {
+          widget.onAMap2DViewCreated!(controller);
+        }
       }));
     }, onError: (dynamic e) {
       print('初始化错误：$e');
