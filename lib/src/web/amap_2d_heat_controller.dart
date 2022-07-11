@@ -152,7 +152,7 @@ class AMap2DHeatWebController extends AMap2DController {
   @override
   Future<void> setHeadPointDataSet(List<Points> points) {
     final HeatMap heatmap = HeatMap(_aMap, HeatmapOptions(radius: 10));
-    heatmap.setDataSet(DataSet(data: points.toList(), max: 100));
+    heatmap.setDataSet(DataSet(data: points.toList()));
     return Future.value();
   }
 }
