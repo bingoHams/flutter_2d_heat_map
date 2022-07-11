@@ -78,13 +78,13 @@ class LngLat {
 @JS()
 @anonymous
 class Points {
-  external  factory Points({num lng, num lat, num count});
+  external factory Points({num lng, num lat, num count});
 }
 
 @JS()
 @anonymous
 class DataSet {
-  external factory DataSet({dynamic /*String|List*/ data, num max});
+  external factory DataSet({dynamic /*String|List*/ data});
 }
 
 @JS()
@@ -110,9 +110,10 @@ class Scale extends Control {
 @JS('Heatmap')
 class HeatMap {
   external HeatMap(AMap map, HeatmapOptions opts);
+
   external setOptions(HeatmapOptions opts);
 
-  external setDataSet(DataSet   dataset);
+  external setDataSet(DataSet dataset);
 
   external show();
 
@@ -214,7 +215,7 @@ class HeatmapOptions {
   external factory HeatmapOptions({
     num radius,
     List<num> opacity,
-    dynamic gradient,
+    Object gradient,
   });
 }
 

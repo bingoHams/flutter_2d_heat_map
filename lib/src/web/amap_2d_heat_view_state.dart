@@ -37,8 +37,9 @@ class AMap2DHeatViewState extends State<AMap2DHeatView> {
       final MapOptions _mapOptions = MapOptions(
           zoom: 11,
           resizeEnable: true,
-          center: LngLat(121.498586,31.239637),
-          mapStyle: 'amap://styles/darkblue');
+          center: LngLat(121.498586, 31.239637),
+          mapStyle: 'amap://styles/darkblue'
+      );
 
       /// 无法使用id https://github.com/flutter/flutter/issues/40080
       _aMap = AMap(_element, _mapOptions);
@@ -50,13 +51,21 @@ class AMap2DHeatViewState extends State<AMap2DHeatView> {
         print("开始加载");
         _aMap.addControl(Scale());
         // _aMap.addControl(ToolBar());
-        final HeatMap heatmap = HeatMap(_aMap, HeatmapOptions(radius: 10));
-        // heatmap.addDataPoint(116.389275, 39.925818, 11);
-        heatmap.setOptions(HeatmapOptions(radius: 25,opacity: [0,0.2], ));
-        heatmap.setDataSet(DataSet(data: widget.point.toList(), max: 100));
+        // final HeatMap heatmap = HeatMap(_aMap, HeatmapOptions(radius: 10));
+        // // heatmap.addDataPoint(116.389275, 39.925818, 11);
+        // heatmap.setOptions(HeatmapOptions(radius: 25, opacity: [
+        //   0,
+        //   0.2
+        // ], gradient: {
+        //   0.4: 'rgb(0, 255, 255)',
+        //   0.65: 'rgb(0, 110, 255)',
+        //   0.85: 'rgb(100, 0, 255)',
+        //   1.0: 'rgb(100, 0, 255)'
+        // }));
+        // heatmap.setDataSet(DataSet(data: widget.point.toList()));
 
         final AMap2DHeatWebController controller =
-        AMap2DHeatWebController(_aMap, widget);
+            AMap2DHeatWebController(_aMap, widget);
         if (widget.onAMap2DViewCreated != null) {
           widget.onAMap2DViewCreated!(controller);
         }
