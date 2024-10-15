@@ -38,7 +38,7 @@ class AMap2DHeatViewState extends State<AMap2DHeatView> {
           zoom: 11,
           resizeEnable: true,
           center: LngLat(121.498586, 31.239637),
-          mapStyle: 'amap://styles/darkblue'
+          // mapStyle: 'amap://styles/darkblue'
       );
 
       /// 无法使用id https://github.com/flutter/flutter/issues/40080
