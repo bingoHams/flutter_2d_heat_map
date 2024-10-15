@@ -1120,11 +1120,12 @@ class _MyAppState extends State<MyApp> {
               ],
             ),
           ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: addPoint,
-            tooltip: 'Increment',
-            child: const Icon(Icons.add),
-          )),
+          // floatingActionButton: FloatingActionButton(
+          //   onPressed: addPoint,
+          //   tooltip: 'Increment',
+          //   child: const Icon(Icons.add),
+          // )
+      ),
     );
   }
 }

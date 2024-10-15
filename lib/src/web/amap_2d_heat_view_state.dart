@@ -19,7 +19,7 @@ class AMap2DHeatViewState extends State<AMap2DHeatView> {
     'AMap.Heatmap',
     'AMap.Scale',
     // 'AMap.Geolocation',
-    // 'AMap.ToolBar'
+    'AMap.ToolBar'
   ];
 
   late AMap _aMap;
@@ -50,7 +50,7 @@ class AMap2DHeatViewState extends State<AMap2DHeatView> {
       _aMap.plugin(plugins, allowInterop(() {
         print("开始加载");
         _aMap.addControl(Scale());
-        // _aMap.addControl(ToolBar());
+        _aMap.addControl(ToolBar());
         // final HeatMap heatmap = HeatMap(_aMap, HeatmapOptions(radius: 10));
         // // heatmap.addDataPoint(116.389275, 39.925818, 11);
         // heatmap.setOptions(HeatmapOptions(radius: 25, opacity: [

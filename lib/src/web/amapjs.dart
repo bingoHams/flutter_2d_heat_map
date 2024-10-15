@@ -124,7 +124,7 @@ class HeatMap {
   external addDataPoint(num lng, num lat, num count);
 }
 
-@JS()
+@JS("ToolBar")
 class ToolBar extends Control {
   external ToolBar();
 }
